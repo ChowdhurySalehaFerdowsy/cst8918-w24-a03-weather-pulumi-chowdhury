@@ -1,9 +1,12 @@
 import * as pulumi from '@pulumi/pulumi'
-
 // Import the configuration settings for the current stack.
+
+import * as resources from '@pulumi/azure-native/resources'
+import * as containerregistry from '@pulumi/azure-native/containerregistry'
+
 const config = new pulumi.Config()
 const appPath = config.get('appPath') || '../'
-const prefixName = config.get('prefixName') || 'cst8918-a03-student'
+const prefixName = config.get('prefixName') || 'cst8918a03student'
 const imageName = prefixName
 const imageTag = config.get('imageTag') || 'latest'
 // Azure container instances (ACI) service does not yet support port mapping
@@ -13,4 +16,30 @@ const publicPort = config.getNumber('publicPort') || 80
 const cpu = config.getNumber('cpu') || 1
 const memory = config.getNumber('memory') || 2
 
-// This is a test to see if the push working or not
+// Create a resource group.
+const resourceGroup = new resources.ResourceGroup(`${prefixName}-rg`)
+
+// Create the container registry.
+const registry = new containerregistry.Registry(`${prefixName}ACR`, {
+  resourceGroupName: resourceGroup.name,
+  adminUserEnabled: true,
+  sku: {
+    name: containerregistry.SkuName.Basic
+  }
+})
+
+// Get the authentication credentials for the container registry.
+const registryCredentials = containerregistry
+  .listRegistryCredentialsOutput({
+    resourceGroupName: resourceGroup.name,
+    registryName: registry.name
+  })
+  .apply(creds => {
+    return {
+      username: creds.username!,
+      password: creds.passwords![0].value!
+    }
+  })
+
+  export const acrServer = registry.loginServer
+  export const acrUsername = registryCredentials.username

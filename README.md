@@ -1,6 +1,6 @@
 CST8918 - DevOps: Infrastructure as Code  
 Prof: Robert McKenney
-
+### Please Take a look end of this file, you'll find 3 screenshots
 # LAB-A03 Pulumi Weather App
 
 In this hands-on lab activity you will revisit the weather app from [LAB-A01](https://github.com/rlmckenney/cst8918-w24-a01-weather). This time you have been asked to make the solution more robust and further reduce redundant hits on the OpenWeather API. To accomplish this, the team has decided to replace the in-app memory cache with a Redis cache that will be shared by all container instances.
@@ -334,3 +334,23 @@ When you are all done, don't forget to clean up the unneeded Azure resources.
 ```sh
 pulumi destroy
 ```
+
+![A screenshot of a computer program Description automatically
+generated](./Screenshots/1.png){width="6.5in"
+height="3.2597222222222224in"}
+
+![A screenshot of a computer program Description automatically
+generated](./Screenshots/2.png){width="6.5in"
+height="3.2597222222222224in"}
+
+![A screenshot of a computer program Description automatically
+generated](./Screenshots/3.png){width="6.5in"
+height="3.2597222222222224in"}
+
+![A screenshot of a computer program Description automatically
+generated](./Screenshots/4.png){width="6.5in"
+height="3.2597222222222224in"}
+
+![A screenshot of a computer program Description automatically
+generated](./Screenshots/5.png){width="6.5in"
+height="3.2597222222222224in"}

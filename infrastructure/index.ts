@@ -99,7 +99,7 @@ const containerGroup = new containerinstance.ContainerGroup(
           },
           {
             name: 'WEATHER_API_KEY',
-            value: '<your-secret-key>'
+            value: 'AAABADRUYcn+U2hsJuQmp/jpnMBQQWdOx/rSc7N8gvgR8ID4Xg=='
           }
         ],
         resources: {
